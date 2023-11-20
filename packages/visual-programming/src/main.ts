@@ -1,5 +1,9 @@
 import { createApp } from 'vue'
-import './style.css'
+import './styles/index.css'
 import App from './App.vue'
+// import VirtualScroller from 'vue-virtual-scroller'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+// app.use(VirtualScroller)
+
+app.mount('#app')

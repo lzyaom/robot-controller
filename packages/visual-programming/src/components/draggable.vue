@@ -1,105 +1,112 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
 import draggable from 'vuedraggable'
+// import { RecycleScroller } from 'vue-virtual-scroller'
+// import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
+import type { Command } from 'types/command'
 
 defineOptions({
-  name: 'custom-clone',
-  display: 'Custom Clone',
+  name: 'DraggableTree',
+  inheritAttrs: false,
 })
-let idGlobal = 8
-
-const list1 = [
-  { name: 'dog 1', id: 1 },
-  { name: 'dog 2', id: 2 },
-  { name: 'dog 3', id: 3 },
-  { name: 'dog 4', id: 4 },
-]
-const list2 = ref([
-  { name: 'cat 5', id: 5 },
-  { name: 'cat 6', id: 6 },
-  { name: 'cat 7', id: 7 },
-])
-const log = (evt: any) => {
-  console.log(evt)
-}
-const cloneDog = ({ id }: { id: number }) => {
-  return {
-    id: idGlobal++,
-    name: `cat ${id}`,
-  }
-}
+defineProps<{
+  list: Command[]
+  level?: number
+}>()
 </script>
 
 <template>
-  <div class="row">
-    <div class="col-3">
-      <h3>Draggable 1</h3>
-      <draggable
-        class="dragArea list-group"
-        :list="list1"
-        :group="{ name: 'people', pull: 'clone', put: false }"
-        :clone="cloneDog"
-        @change="log"
-        item-key="id"
-      >
-        <template #item="{ element }">
-          <div class="list-group-item">
-            {{ element.name }}
-          </div>
+  <!-- <RecycleScroller
+    class="scroller"
+    :items="list"
+    :item-size="54"
+    key-field="id"
+    v-slot="{ item }"
+  > -->
+  <draggable
+    class="list"
+    :group="{ name: 'command', put: true }"
+    :list="list"
+    item-key="id"
+    v-bind="$attrs"
+    tag="ul"
+  >
+    <template #item="{ element }">
+      <li :class="['list-item', element.isBlock && 'is-block']">
+        <p class="name" :style="{ backgroundColor: element.color }">
+          {{ element.name }}
+        </p>
+        <template v-if="element.isBlock">
+          <div
+            class="col-line"
+            :style="{ backgroundColor: element.color }"
+          ></div>
+          <div
+            class="row-line"
+            :style="{ backgroundColor: element.color }"
+          ></div>
         </template>
-      </draggable>
-    </div>
-
-    <div class="col-3">
-      <h3>Draggable 2</h3>
-      <draggable
-        class="dragArea list-group"
-        :list="list2"
-        group="people"
-        @change="log"
-        item-key="id"
-      >
-        <template #item="{ element }">
-          <div class="list-group-item">
-            {{ element.name }}
-          </div>
-        </template>
-      </draggable>
-    </div>
-  </div>
+        <DraggableTree
+          v-if="element.children"
+          class="nested"
+          :list="element.children"
+          :level="level! + 1"
+          v-bind="$attrs"
+        ></DraggableTree>
+      </li>
+    </template>
+  </draggable>
+  <!-- </RecycleScroller> -->
 </template>
 
 <style>
-.button {
-  margin-top: 35px;
+.scroller {
+  @apply h-full;
 }
-
-.flip-list-move {
-  transition: transform 0.5s;
+.list {
+  @apply text-white;
 }
-
-.no-move {
-  transition: transform 0s;
+.view-area {
+  @apply pb-8;
 }
-
-.ghost {
-  opacity: 0.5;
-  background: #c8ebfb;
+.nested {
+  @apply pb-0;
+  min-height: 2rem;
+  padding-left: 0.6rem;
 }
-
-.list-group {
-  min-height: 20px;
-  border: 1px solid #f1f1f1;
+.list-item {
+  @apply relative w-9/12 cursor-grab;
 }
-
-.list-group-item {
-  cursor: grab;
-  height: 36px;
-  line-height: 36px;
-  text-align: center;
+.list-item.is-block {
+  @apply pb-2;
 }
-
-.list-group-item i {
-  cursor: pointer;
+.commands > .is-block {
+  min-height: 3rem;
+}
+.view-area > .is-block {
+  @apply pb-2;
+  min-height: 3rem;
+}
+.name {
+  @apply h-8 leading-8 pl-6;
+  border-top-right-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+}
+.is-block > .name {
+  border-bottom-left-radius: 0;
+}
+.nested > .list-item {
+  @apply w-full;
+  margin-bottom: 2px;
+  margin-top: 2px;
+}
+.col-line {
+  @apply absolute top-8 left-0 bottom-0 w-2;
+  border-bottom-left-radius: .25rem;
+  border-bottom-left-radius: .25rem;
+}
+.row-line {
+  @apply absolute left-2 bottom-0 w-16 h-2;
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem;
 }
 </style>

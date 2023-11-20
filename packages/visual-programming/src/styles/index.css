@@ -1,6 +1,14 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+.n-layout-scroll-container {
+  @apply
+    flex;
+}
+.n-layout-content{
+  margin-left: 274px;
+}
 /* 
 root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

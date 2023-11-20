@@ -1,0 +1,61 @@
+.button {
+  margin-top: 35px;
+}
+
+.flip-list-move {
+  transition: transform 0.5s;
+}
+
+.no-move {
+  transition: transform 0s;
+}
+
+/* .sortable-ghost {
+  opacity: 1;
+  background: #6ab9dd;
+} */
+.list {
+  @apply text-white;
+}
+
+.list-item {
+  cursor: grab;
+  margin-bottom: 10px;
+  position: relative;
+}
+.commands .is-block {
+  min-height: 3rem;
+}
+.view-area {
+  min-height: 32px;
+}
+.name {
+  height: 2rem;
+  line-height: 2rem;
+  border-radius: 20px;
+  padding-left: 1.5rem;
+}
+.is-block .name {
+  border-bottom-left-radius: 0;
+}
+
+/* .list-item i {
+  cursor: pointer;
+} */
+.col-line {
+  width: 0.5rem;
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  bottom: 0;
+  border-bottom-left-radius: 20px;
+}
+.row-line {
+  position: absolute;
+  bottom: 0;
+  left: 0.5rem;
+  width: 4rem;
+  height: 0.5rem;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
