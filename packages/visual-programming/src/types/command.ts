@@ -6,5 +6,14 @@ export interface Command {
   isBlock: boolean
   component?: string
   parent?: Command
-  next?: Command
 }
+
+export type TreeNode = {
+  expend: boolean
+  parent?: TreeNode
+  children?: TreeNode
+  data: Command
+  level: number
+}
+
+

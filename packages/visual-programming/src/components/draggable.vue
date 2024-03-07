@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
-// import { RecycleScroller } from 'vue-virtual-scroller'
-// import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import type { Command } from 'types/command'
 
 defineOptions({
@@ -15,13 +13,6 @@ defineProps<{
 </script>
 
 <template>
-  <!-- <RecycleScroller
-    class="scroller"
-    :items="list"
-    :item-size="54"
-    key-field="id"
-    v-slot="{ item }"
-  > -->
   <draggable
     class="list"
     :group="{ name: 'command', put: true }"
@@ -31,11 +22,11 @@ defineProps<{
     tag="ul"
   >
     <template #item="{ element }">
-      <li :class="['list-item', element.isBlock && 'is-block']">
+      <li :class="['list-item']" :key="element.id">
         <p class="name" :style="{ backgroundColor: element.color }">
           {{ element.name }}
         </p>
-        <template v-if="element.isBlock">
+        <!-- <template v-if="element.isBlock">
           <div
             class="col-line"
             :style="{ backgroundColor: element.color }"
@@ -44,24 +35,23 @@ defineProps<{
             class="row-line"
             :style="{ backgroundColor: element.color }"
           ></div>
-        </template>
-        <DraggableTree
+        </template> -->
+        <!-- <DraggableTree
           v-if="element.children"
           class="nested"
           :list="element.children"
           :level="level! + 1"
           v-bind="$attrs"
-        ></DraggableTree>
+        ></DraggableTree> -->
       </li>
     </template>
   </draggable>
-  <!-- </RecycleScroller> -->
 </template>
 
 <style>
-.scroller {
+/* .scroller {
   @apply h-full;
-}
+} */
 .list {
   @apply text-white;
 }
@@ -101,12 +91,12 @@ defineProps<{
 }
 .col-line {
   @apply absolute top-8 left-0 bottom-0 w-2;
-  border-bottom-left-radius: .25rem;
-  border-bottom-left-radius: .25rem;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
 }
 .row-line {
   @apply absolute left-2 bottom-0 w-16 h-2;
-  border-top-right-radius: .25rem;
-  border-bottom-right-radius: .25rem;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
 }
 </style>
