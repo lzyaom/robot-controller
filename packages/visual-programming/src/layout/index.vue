@@ -1,15 +1,20 @@
 <script lang="ts" setup>
 import { NLayout, NLayoutSider, NLayoutHeader, NLayoutContent } from 'naive-ui'
-
+import Menu from './components/Menu.vue'
 defineOptions({
   name: 'AppLayout',
 })
 </script>
 
 <template>
-  <NLayout :native-scrollbar="false" position="absolute">
-    <NLayoutHeader class="h-16 bg-black text-white"> 头部 </NLayoutHeader>
-    <NLayout position="absolute" style="top: 4rem" has-sider>
+  <NLayout :native-scrollbar="false">
+    <NLayoutHeader class="h-12 bg-amber-200 text-white">
+      <Menu></Menu>
+    </NLayoutHeader>
+    <RouterView v-slot="{ Component }">
+      <component :is="Component"></component>
+    </RouterView>
+    <!-- <NLayout style="top: 4rem" has-sider>
       <NLayoutSider
         class="w-1/5"
         position="absolute"
@@ -17,9 +22,9 @@ defineOptions({
       >
         <slot name="sider"></slot>
       </NLayoutSider>
-      <NLayoutContent position="absolute" class="w-4/5">
+      <NLayoutContent class="w-4/5">
         <slot></slot>
       </NLayoutContent>
-    </NLayout>
+    </NLayout> -->
   </NLayout>
 </template>

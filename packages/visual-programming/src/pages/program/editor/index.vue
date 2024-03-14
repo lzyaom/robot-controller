@@ -3,7 +3,7 @@
 import type { /* CSSProperties, */ Component } from 'vue'
 // import { throttle } from 'lodash'
 import Layout from '@/layout/index.vue'
-import Draggable from '@/components/draggable.vue'
+import Draggable from './components/draggable.vue'
 import type { Command } from 'types/command'
 import treeData from './data'
 import VTree from './components/vTree/index.vue'
@@ -135,3 +135,4 @@ let currentComponent: Component | null = null
   margin-bottom: 2px;
 } */
 </style>
+../program/data
