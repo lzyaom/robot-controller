@@ -13,6 +13,19 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^20.2.1"
+    "@commitlint/cli": "^19.2.0",
+    "@commitlint/config-conventional": "^19.1.0",
+    "@types/node": "^20.2.1",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.42.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-vue": "^9.23.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "pettier": "^1.1.0"
   }
 }
