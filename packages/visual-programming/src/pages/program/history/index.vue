@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
 import {
   NCard,
   NPagination,
@@ -15,34 +16,41 @@ import {
   PricetagsOutline,
   CreateOutline,
 } from '@vicons/ionicons5'
+import type { Program } from 'types/program'
 defineOptions({
   name: 'ProgramHistory',
 })
 
-const programs = [
+const router = useRouter()
+
+const programs: Program[] = [
   {
-    title: '卡片分段示例',
-    fileName: '',
+    id: 'dakajl1',
+    fileName: '卡片分段示例',
     type: 'JS',
     createTime: '2024-03-21 16:30:24',
+    description: '',
   },
   {
-    title: '卡片分段示例',
-    fileName: '',
+    id: 'nn891jka',
+    fileName: '卡片分段示例',
     type: 'JS',
     createTime: '2024-03-21 16:30:24',
+    description: '',
   },
   {
-    title: '卡片分段示例',
-    fileName: '',
+    id: 'lfahfak',
+    fileName: '卡片分段示例',
     type: 'JS',
     createTime: '2024-03-21 16:30:24',
+    description: '',
   },
   {
-    title: '卡片分段示例',
-    fileName: '',
+    id: 'daadf1l1',
+    fileName: '卡片分段示例',
     type: 'JS',
     createTime: '2024-03-21 16:30:24',
+    description: '',
   },
 ]
 const page = reactive<{
@@ -54,6 +62,10 @@ const page = reactive<{
   size: 0,
   total: 0,
 })
+
+const jumpToEditor = (id: string) => {
+  router.push({ name: 'editor', params: { id } })
+}
 </script>
 
 <template>
@@ -61,7 +73,7 @@ const page = reactive<{
     <div class="program-list flex flex-wrap flex-row">
       <n-card
         v-for="item in programs"
-        :title="item.title"
+        :title="item.fileName"
         hoverable
         bordered
         class="program-item"
@@ -85,7 +97,7 @@ const page = reactive<{
               >
             </div>
             <div class="operation">
-              <n-button ghost color="#8a2be2">
+              <n-button ghost color="#8a2be2" @click="jumpToEditor(item.id)">
                 <template #icon>
                   <n-icon><CreateOutline /></n-icon>
                 </template>
@@ -119,7 +131,7 @@ const page = reactive<{
   </div>
 </template>
 
-<style>
+<style lang="css">
 .program-item {
   @apply w-1/4 sm:w-5/6 xl:w-3/12 lg:w-1/4 mx-auto;
 

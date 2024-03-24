@@ -93,7 +93,8 @@ let currentComponent: Component | null = null
 </script>
 
 <template>
-  <Layout>
+  <div class="program-editor">程序编辑</div>
+  <!-- <Layout>
     <template #sider>
       <Draggable
         class="commands"
@@ -114,7 +115,7 @@ let currentComponent: Component | null = null
       <div class="w-2/5">属性编辑区</div>
       <component :is="currentComponent"></component>
     </div>
-  </Layout>
+  </Layout> -->
 </template>
 
 <style>

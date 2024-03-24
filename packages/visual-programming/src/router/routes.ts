@@ -16,15 +16,16 @@ const routes: RouteRecordRaw[] = [
         path: '/program',
         component: () => import('@/pages/program/history/index.vue'),
       },
-      {
-        name: 'editor',
-        path: '/editor/:id',
-        component: () => import('@/pages/program/editor/index.vue'),
-        meta: {
-          label: '编程',
-        },
-      },
     ],
+  },
+  {
+    name: 'editor',
+    path: '/editor/:id',
+    component: () => import('@/pages/program/editor/index.vue'),
+    meta: {
+      label: '编程',
+      hidden: true,
+    },
   },
   {
     name: 'pluginMange',
