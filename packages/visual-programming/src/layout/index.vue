@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { NLayout, NLayoutSider, NLayoutHeader, NLayoutContent } from 'naive-ui'
+import { NLayout, NLayoutHeader } from 'naive-ui'
 import Menu from './components/Menu.vue'
 defineOptions({
   name: 'AppLayout',
